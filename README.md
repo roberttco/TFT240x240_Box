@@ -1,4 +1,4 @@
-Code for a utility TFT display controlled via MQT.  This is targetd as a Wemos D1 mini connected to a 240x240 ST7789 display.  
+Code for a utility TFT display controlled via MQTT.  This is targetd as a Wemos D1 mini connected to a 240x240 ST7789 display.  
 
 *Credentials
 Create the file include/secrets.h with the contents
