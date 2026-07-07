@@ -1,4 +1,15 @@
-#include "fontfunctions.h"
+#include "app.h"
+
+#include <Adafruit_GFX.h>    // Core graphics library
+
+#include <Fonts/FreeMono9pt7b.h>
+#include <Fonts/FreeSans9pt7b.h>
+#include "fonts/futuricondensedlight60pt7b.h"
+#include "fonts/futuricondensedlight40pt7b.h"
+#include "fonts/Futuri_Condensed_Regular80pt7b.h"
+#include "fonts/Varela_Regular10pt7b.h"
+#include "fonts/Varela_Regular20pt7b.h"
+#include <fonts/FreeMono24pt7b.h>
 
 typedef struct _FontMap
 {
@@ -16,6 +27,33 @@ static FontMap fmap[] = {
   {"Futuri60",(GFXfont *)(&futuricondensedlight60pt7b)},
   {"Futuri40",(GFXfont *)(&futuricondensedlight40pt7b)}
   };
+
+char *getFontNamesAsJson()
+{
+  String rval = "[";
+  int c = sizeof(fmap) / sizeof(FontMap);
+  for (int i = 0 ; i < c ; i++)
+  {
+    const char *fn= fmap[i].name;
+
+    rval += "\"" + String(fn) + "\"";
+
+    if (i < (c-1))
+    {
+      rval += ",";
+    }
+  }
+
+  rval += "]";
+
+
+  int l = rval.length();
+  char *r = (char *)malloc(sizeof(char) * l + 1);
+  memcpy(r,rval.c_str(),l);
+  r[l] = 0;
+
+  return r;
+}
 
 bool CompareFontNames(const char *name, char *compare)
 {
@@ -43,8 +81,6 @@ GFXfont *GetFont(char *name)
   
   for (int i = 0 ; i < numfonts ; i++)
   {
-    DEBUG_PRINTLN (fmap[i].name);
-    
     if (CompareFontNames(fmap[i].name,name) == true)
     {
       return fmap[i].font;  

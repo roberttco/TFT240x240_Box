@@ -5,12 +5,11 @@
 #include <Adafruit_GFX.h>    // Core graphics library
 #include <Adafruit_ST7789.h> // Hardware-specific library for ST7789
 
-extern Adafruit_ST7789 tft;
+#include "fonts.h"
 
 #ifdef DEBUG
 void dumpParams(CmdParser *myParser);
 #endif
-
 void functFill(CmdParser *myParser);
 void functString(CmdParser *myParser);
 void functStringExtended(CmdParser *myParser);
