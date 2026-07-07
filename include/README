@@ -1,1 +1,20 @@
-Put the secrets.h file in this folder
+# Credentials
+
+Create the file include/secrets.h with the contents
+```
+#include <EspMQTTClient.h>
+EspMQTTClient client(
+  "WIFI_SSID",
+  "WIFI_PASSWORD",
+  "MQTT_BROKER_IP",
+  "MQTT_CLIENT_ID",
+  "MQTT_PORT"
+);
+
+#define MQTT_LWT_TOPIC "MQTT last will topic"
+#define MQTT_TXT_TOPIC "MQTT topic for sending content"
+#define MQTT_CMD_TOPIC "MQTT topic for sending display commands"
+#define MQTT_INFO_TOPIC " MQTT topic where command output is sent"
+#define MQTT_STATE_TOPIC "MQTT topic for receiving state form the display"
+```
+
